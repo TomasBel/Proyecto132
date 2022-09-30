@@ -5,7 +5,7 @@ class MiFamily(models.Model):
     edad = models.IntegerField()
     fecha_nac = models.DateField()
 
-class   estudiantes(models.Model):
+class   estudiantes1(models.Model):
     nombre = models.CharField(max_length=60)
     apellido = models.CharField(max_length=60)
     correo = models.EmailField()

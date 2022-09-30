@@ -4,7 +4,7 @@ from ast import MatchMapping
 from unicodedata import name
 from django.http import HttpResponse
 from django.template import Template,  Context
-from ProyectoCoder.models import MiFamily, entregable, profesor, estudiantes
+from ProyectoCoder.models import MiFamily, entregable, profesor, estudiantes1
 from django.shortcuts import render
 from ProyectoCoder.forms import *
 
@@ -30,17 +30,6 @@ def Family(request):
 	papa.save()
 	hermano = MiFamily(nombre = "Ignacio", edad = 10, fecha_nac="2011-11-07" )
 	hermano.save()
-	
-	#miHtml = open("C:/Users/tomas/Desktop/Python/Proyecto1/ProyectoCoder/templates/ProyectoCoder/Family.html")
-	
-	#plantilla = Template(miHtml.read())
-	
-	#miHtml.close()
-
-	#miContexto = Context()
-
-	#documento = plantilla.render(miContexto)
-	
 	return render(request, "ProyectoCoder/Family.html",{"mama":mama,"papa":papa,"hermano":hermano})
 
 
@@ -69,21 +58,21 @@ def formulario1(request):
 
 		formulario1 = FormularioProfesor(request.POST)
 
-		if formulario1.is_valid(): #manera de ver si tenemos errores
+		if formulario1.is_valid(): 
 		
 			info = formulario1.cleaned_data
 
 			ProfeF = profesor(nombre=info["nombre"], apellido=info["apellido"], correo=info["correo"], profesion=info["profesion"])
 
-			ProfeF.save() #se realiza el guardado en la base de datos
+			ProfeF.save() 
 
-			return render(request, "ProyectoCoder/inicio.html") #nos vuelve a mostrar la pagina del formulario vacia o la podemos redireccionar a otra parte de la pagina
+			return render(request, "ProyectoCoder/inicio.html") 
 
 	else: 
 		
-		formulario1=FormularioProfesor() #muestra el formulario vacio
+		formulario1=FormularioProfesor() 
 	
-	return render(request, "ProyectoCoder/formu1.html", {"form1":formulario1}) #entero añ url y me muestra esta plantilla
+	return render(request, "ProyectoCoder/formu1.html", {"form1":formulario1}) 
 	
 def formulario2(request):
 	
@@ -91,21 +80,21 @@ def formulario2(request):
 
 		formulario2 = FormularioEstudiantes(request.POST)
 
-		if formulario2.is_valid(): #manera de ver si tenemos errores
+		if formulario2.is_valid(): 
 		
 			info = formulario2.cleaned_data
 
 			estudianteF = estudiantes(nombre=info["nombre"], apellido=info["apellido"], correo=info["correo"])
 
-			estudianteF.save() #se realiza el guardado en la base de datos
+			estudianteF.save() 
 
-			return render(request, "ProyectoCoder/inicio.html") #nos vuelve a mostrar la pagina del formulario vacia o la podemos redireccionar a otra parte de la pagina
+			return render(request, "ProyectoCoder/inicio.html") 
 
 	else: 
 		
-		formulario2 = FormularioEstudiantes() #muestra el formulario vacio
+		formulario2 = FormularioEstudiantes() 
 	
-	return render(request, "ProyectoCoder/formu2.html", {"form2":formulario2}) #entero añ url y me muestra esta plantilla
+	return render(request, "ProyectoCoder/formu2.html", {"form2":formulario2}) 
 
 
 def busquedaProfes(requst):
@@ -128,3 +117,9 @@ def buscar(request):
 		mensaje = "No enviaste los datos"
 
 	return HttpResponse(mensaje)
+
+def curso1(request):
+	return render(request, "ProyectoCoder/curso.html")
+
+def cursoFormulario(request):
+	return render(request, "ProyectoCoder/cursoFormulario.html")
